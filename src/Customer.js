@@ -29,6 +29,7 @@ class Customer {
       const inputMenu = await InputView.menu();
       const splitInputMenu = inputMenu.split(',');
       this.checkSameMenu(splitInputMenu);
+      this.checkNumberOfMenu(splitInputMenu);
 
       // //STUDY (메뉴 객체 생성)
       // splitInputMenu.forEach((item) => {
@@ -53,8 +54,20 @@ class Customer {
     });
 
     Validator.menuName(menuNameArray);
+    // 중복메뉴이름 체크
+    // 음료만 주문 예외 체크
   }
-
-  checkMenu(menuList) {}
+  // /^[1-9]\d*$/
+  checkNumberOfMenu(menuList) {
+    const menuNumberArray = menuList.map((menu) => {
+      //[이름, 개수]로 분할된 값중에서 이름을 name 으로 저장하고 리턴
+      const [name, number] = menu.split('-');
+      return number;
+    });
+    console.log(menuNumberArray);
+    Validator.menuNumber(menuNumberArray);
+    // 최대 주문 메뉴 제한
+  }
 }
+
 export default Customer;
