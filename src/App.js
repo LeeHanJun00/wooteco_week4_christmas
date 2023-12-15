@@ -1,5 +1,6 @@
 import OutputView from './views/OutputView.js';
 import Customer from './Customer.js';
+import Benefit from './Benefit.js';
 class App {
   async run() {
     OutputView.printStart();
@@ -12,6 +13,11 @@ class App {
     OutputView.printDate(customer.visitDate);
     OutputView.printMenu(customer.menuList);
     OutputView.totalPrice(customer.totalAmount);
+
+    const benefit = new Benefit();
+    const gift = benefit.validateGift(customer.totalAmount);
+
+    OutputView.gift(gift);
   }
 }
 

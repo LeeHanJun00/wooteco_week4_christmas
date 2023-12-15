@@ -57,3 +57,5 @@ export const AMOUNT = Object.freeze({
   christmasDiscountIncrease: 100,
   specialDateDiscount: 1000,
 });
+
+export const GIFT = '샴페인';
