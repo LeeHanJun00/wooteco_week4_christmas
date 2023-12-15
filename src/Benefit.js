@@ -10,29 +10,33 @@ class Benefit {
   }
   checkBenefits(totalAmount, visitDate, menuList) {
     this.checkChristmasDiscount(visitDate);
-    this.checkWeekdayOrWeekend(visitDate);
+    this.checkWeekdayOrWeekend(visitDate, menuList);
   }
 
-  checkWeekdayOrWeekend() {
-    const result = Validator.weekdayOrWeekend;
+  checkWeekdayOrWeekend(visitDate, menuList) {
+    const result = Validator.weekdayOrWeekend(visitDate);
+
     if (result === '평일') {
       this.weekendDiscountAmount = 0;
-      this.calculateWeekdayDiscountAmount();
+      this.calculateWeekdayDiscountAmount(menuList);
       return;
     }
 
     if (result === '주말') {
       this.weekdayDiscountAmount = 0;
-      this.calculateWeekendDiscountAmount();
+      this.calculateWeekendDiscountAmount(menuList);
       return;
     }
   }
 
-  calculateWeekdayDiscountAmount() {
-    // 디저트 메뉴 갯수 확인
+  calculateWeekdayDiscountAmount(menuList) {
+    const numberOfDessert = Validator.countDessert(menuList);
+    this.weekdayDiscountAmount = numberOfDessert * AMOUNT.discountOnWeekendAndWeekday;
   }
-  calculateWeekendDiscountAmount() {
-    // 메인 메뉴 갯수 확인
+
+  calculateWeekendDiscountAmount(menuList) {
+    const numberOfMain = Validator.countMain(menuList);
+    this.weekendDiscountAmount = numberOfMain * AMOUNT.discountOnWeekendAndWeekday;
   }
 
   validateGift(totalAmount) {

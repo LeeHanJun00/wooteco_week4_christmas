@@ -1,4 +1,4 @@
-import { ERROR, MENU, DRINK } from '../constants/Constant.js';
+import { ERROR, MENU, DRINK, DESSERT, MAIN } from '../constants/Constant.js';
 
 class Validator {
   static dateRange(userInputDate) {
@@ -50,6 +50,35 @@ class Validator {
     if (totalOrder > 20) {
       throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
     }
+  }
+
+  static weekdayOrWeekend(visitDate) {
+    const date = new Date(2023, 11, visitDate);
+    if (date.getDay() >= 0 && date.getDay() <= 4) {
+      return '평일';
+    }
+
+    return '주말';
+  }
+  static countDessert(menuList) {
+    let count = 0;
+    Object.keys(menuList).forEach((name) => {
+      if (Object.keys(DESSERT).includes(name)) {
+        count += menuList[name];
+      }
+    });
+
+    return count;
+  }
+  static countMain(menuList) {
+    let count = 0;
+    Object.keys(menuList).forEach((name) => {
+      if (Object.keys(MAIN).includes(name)) {
+        count += menuList[name];
+      }
+    });
+
+    return count;
   }
 }
 
