@@ -11,8 +11,17 @@ class Benefit {
   checkBenefits(totalAmount, visitDate, menuList) {
     this.checkChristmasDiscount(visitDate);
     this.checkWeekdayOrWeekend(visitDate, menuList);
+    this.checkspecialDiscountAmount(visitDate);
   }
 
+  checkspecialDiscountAmount(visitDate) {
+    const result = Validator.specialDate(visitDate);
+    if (result === '특별할인') {
+      this.specialDiscountAmount += 1000;
+    }
+
+    return;
+  }
   checkWeekdayOrWeekend(visitDate, menuList) {
     const result = Validator.weekdayOrWeekend(visitDate);
 

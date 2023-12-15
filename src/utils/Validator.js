@@ -1,4 +1,4 @@
-import { ERROR, MENU, DRINK, DESSERT, MAIN } from '../constants/Constant.js';
+import { ERROR, MENU, DRINK, DESSERT, MAIN, SPECIAL_DATE } from '../constants/Constant.js';
 
 class Validator {
   static dateRange(userInputDate) {
@@ -79,6 +79,13 @@ class Validator {
     });
 
     return count;
+  }
+
+  static specialDate(visitDate) {
+    if (SPECIAL_DATE.includes(visitDate)) {
+      return '특별할인';
+    }
+    return;
   }
 }
 
