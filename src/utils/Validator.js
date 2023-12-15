@@ -1,4 +1,4 @@
-import { ERROR } from '../constants/Constant.js';
+import { ERROR, MENU } from '../constants/Constant.js';
 
 class Validator {
   static dateRange(userInputDate) {
@@ -7,6 +7,14 @@ class Validator {
     }
 
     return;
+  }
+
+  static menuName(menuNameList) {
+    menuNameList.forEach((name) => {
+      if (!Object.keys(MENU).includes(name)) {
+        throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
+      }
+    });
   }
 }
 
