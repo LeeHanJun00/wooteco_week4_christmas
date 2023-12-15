@@ -15,9 +15,21 @@ class App {
     OutputView.totalPrice(customer.totalAmount);
 
     const benefit = new Benefit();
-    const gift = benefit.validateGift(customer.totalAmount);
 
+    const gift = benefit.validateGift(customer.totalAmount);
     OutputView.gift(gift);
+    this.validateBenefit(benefit, customer);
+    console.log(benefit);
+  }
+
+  validateBenefit(benefit, customer) {
+    const result = benefit.checkBenefitQualification(customer.totalAmount);
+    if (result === '혜택적용') {
+      benefit.checkBenefits(customer.totalAmount, customer.visitDate, customer.menuList);
+    }
+    if (result === '혜택미적용') {
+      return;
+    }
   }
 }
 
