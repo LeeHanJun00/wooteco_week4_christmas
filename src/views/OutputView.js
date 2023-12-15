@@ -15,6 +15,11 @@ const OutputView = {
       Console.print(`${menu} ${menuList[menu]}개`);
     });
   },
+
+  totalPrice(toalAmount) {
+    Console.print('<할인 전 총주문 금액>');
+    Console.print(`${toalAmount.toLocaleString()}원`);
+  },
   // ...
 };
 

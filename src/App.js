@@ -11,6 +11,7 @@ class App {
 
     OutputView.printDate(customer.visitDate);
     OutputView.printMenu(customer.menuList);
+    OutputView.totalPrice(customer.totalAmount);
   }
 }
 
