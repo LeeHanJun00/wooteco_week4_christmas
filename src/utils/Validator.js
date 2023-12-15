@@ -28,6 +28,13 @@ class Validator {
 
     return;
   }
+
+  static maximumOrder(numberList) {
+    const totalOrder = numberList.reduce((acc, curr) => acc + Number(curr), 0);
+    if (totalOrder > 20) {
+      throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
+    }
+  }
 }
 
 export default Validator;
