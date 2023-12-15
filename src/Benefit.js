@@ -2,16 +2,34 @@ import { AMOUNT, MENU, GIFT } from './constants/Constant.js';
 import Validator from './utils/Validator.js';
 class Benefit {
   constructor() {
+    this.totalDiscountAmount = 0;
     this.gift = 0;
     this.weekdayDiscountAmount = 0;
     this.weekendDiscountAmount = 0;
     this.specialDiscountAmount = 0;
     this.christmasDiscountAmount = 0;
+    this.eventBege;
   }
   checkBenefits(totalAmount, visitDate, menuList) {
     this.checkChristmasDiscount(visitDate);
     this.checkWeekdayOrWeekend(visitDate, menuList);
     this.checkspecialDiscountAmount(visitDate);
+    this.calculateTotalDiscountAmount();
+    this.checkBedge();
+  }
+
+  checkBedge() {
+    const result = Validator.bedge(this.totalDiscountAmount);
+    this.eventBege = result;
+  }
+
+  calculateTotalDiscountAmount() {
+    this.totalDiscountAmount =
+      this.gift +
+      this.weekdayDiscountAmount +
+      this.weekendDiscountAmount +
+      this.specialDiscountAmount +
+      this.christmasDiscountAmount;
   }
 
   checkspecialDiscountAmount(visitDate) {
@@ -22,6 +40,7 @@ class Benefit {
 
     return;
   }
+
   checkWeekdayOrWeekend(visitDate, menuList) {
     const result = Validator.weekdayOrWeekend(visitDate);
 
@@ -81,6 +100,20 @@ class Benefit {
     this.christmasDiscountAmount = discountAmount;
 
     return;
+  }
+
+  calculateAfterDiscount(totalAmount) {
+    if (this.gift !== 0) {
+      const result = totalAmount - (this.totalDiscountAmount + AMOUNT.minimumAmountOfGiftEvent);
+
+      return result;
+    }
+
+    if (this.gift === 0) {
+      const result = totalAmount - this.totalDiscountAmount;
+
+      return result;
+    }
   }
 }
 

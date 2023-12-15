@@ -19,7 +19,13 @@ class App {
     const gift = benefit.validateGift(customer.totalAmount);
     OutputView.gift(gift);
     this.validateBenefit(benefit, customer);
-    console.log(benefit);
+
+    // console.log(benefit);
+    OutputView.benefitList(benefit);
+    OutputView.printTotalBenefitAmount(benefit.totalDiscountAmount);
+    const amount = benefit.calculateAfterDiscount(customer.totalAmount);
+    OutputView.printAfterDiscount(amount);
+    OutputView.printEventBedge(benefit.eventBege);
   }
 
   validateBenefit(benefit, customer) {
