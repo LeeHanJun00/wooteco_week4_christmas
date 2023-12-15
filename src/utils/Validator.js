@@ -12,7 +12,7 @@ class Validator {
   static menuName(menuNameList) {
     menuNameList.forEach((name) => {
       if (!Object.keys(MENU).includes(name)) {
-        throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.5');
+        throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
       }
     });
 
@@ -30,7 +30,6 @@ class Validator {
 
   static sameMenuName(menuNameList) {
     const setMenuNameList = new Set(menuNameList);
-    console.log(setMenuNameList);
     if (menuNameList.length !== setMenuNameList.size) {
       throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
     }

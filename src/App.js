@@ -5,10 +5,12 @@ class App {
     OutputView.printStart();
 
     const customer = new Customer();
-    // await customer.inputDate();
+    await customer.inputDate();
     await customer.inputMenu();
+    await customer.totalPrice();
 
-    // console.log(customer);
+    OutputView.printDate(customer.visitDate);
+    OutputView.printMenu(customer.menuList);
   }
 }
 
