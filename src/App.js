@@ -4,6 +4,7 @@ class App {
   async run() {
     OutputView.printStart();
     const date = await inputDate();
+    // console.log(date);
   }
 }
 

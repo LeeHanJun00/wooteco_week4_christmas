@@ -5,16 +5,16 @@ import Validator from './utils/Validator.js';
 export const inputDate = async () => {
   try {
     const date = await InputView.date();
-    checkDate();
+    checkDate(date);
 
     return date;
   } catch (error) {
     Console.print(error.message);
 
-    return inputCarNames();
+    return inputDate();
   }
 };
 
-const checkDate = () => {
-  Va;
+const checkDate = (date) => {
+  Validator.dateRange(date);
 };
