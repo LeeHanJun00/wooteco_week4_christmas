@@ -1,4 +1,4 @@
-import { ERROR, MENU } from '../constants/Constant.js';
+import { ERROR, MENU, DRINK } from '../constants/Constant.js';
 
 class Validator {
   static dateRange(userInputDate) {
@@ -12,11 +12,28 @@ class Validator {
   static menuName(menuNameList) {
     menuNameList.forEach((name) => {
       if (!Object.keys(MENU).includes(name)) {
-        throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
+        throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.5');
       }
     });
 
     return;
+  }
+
+  static orderOnlyDrink(menuNameList) {
+    const DRINK_NAMES = Object.keys(DRINK);
+    if (menuNameList.length === menuNameList.filter((name) => DRINK_NAMES.includes(name)).length) {
+      throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
+    }
+
+    return;
+  }
+
+  static sameMenuName(menuNameList) {
+    const setMenuNameList = new Set(menuNameList);
+    console.log(setMenuNameList);
+    if (menuNameList.length !== setMenuNameList.size) {
+      throw new Error('[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.');
+    }
   }
 
   static menuNumber(numberList) {

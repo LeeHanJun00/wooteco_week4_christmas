@@ -5,7 +5,7 @@ class App {
     OutputView.printStart();
 
     const customer = new Customer();
-    await customer.inputDate();
+    // await customer.inputDate();
     await customer.inputMenu();
 
     // console.log(customer);
